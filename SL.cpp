@@ -6,7 +6,6 @@
 #include <set>
 
 using namespace std;
-//Структура для хранения узла списка
 template <typename T>
 struct Node
 {
@@ -15,7 +14,7 @@ struct Node
 	Node* next;
 	Node* down;
 };
-//Структура для хранения списка списков
+
 template <typename T>
 struct SLNode
 {
@@ -24,7 +23,6 @@ struct SLNode
 	SLNode* next;
 };
 
-//Функция добавления нового уровня в начало списка списков(списка с пропусками)
 template <typename T>
 void push_front(SLNode<Node<T>* >*&first, SLNode<Node<T>* >*&last, Node<T>* info)
 {
@@ -39,7 +37,6 @@ void push_front(SLNode<Node<T>* >*&first, SLNode<Node<T>* >*&last, Node<T>* info
 		last = first;
 }
 
-//Функция добавления нового уровня в конец списка списков(списка с пропусками)
 template <typename T>
 void push_back(SLNode<Node<T>* >*&first, SLNode<Node<T>* >*&last, Node<T>* info)
 {
@@ -54,7 +51,6 @@ void push_back(SLNode<Node<T>* >*&first, SLNode<Node<T>* >*&last, Node<T>* info)
 		first = last;
 }
 
-//Функция удаления уровня с начала списка списков(списка с пропусками)
 template <typename T>
 void pop_front(SLNode<Node<T>* >*&first, SLNode<Node<T>* >*&last)
 {
@@ -69,7 +65,6 @@ void pop_front(SLNode<Node<T>* >*&first, SLNode<Node<T>* >*&last)
 		delete tmp;
 	}
 }
-//Функция удаления уровня с конца списка списков(списка с пропусками)
 template <typename T>
 void pop_back(SLNode<Node<T>* >*&first, SLNode<Node<T>* >*&last)
 {
@@ -84,7 +79,6 @@ void pop_back(SLNode<Node<T>* >*&first, SLNode<Node<T>* >*&last)
 		delete tmp;
 	}
 }
-//Функция удаления узла списка из начала
 template <typename T>
 void pop_node(Node<T>*& node)
 {
@@ -96,7 +90,6 @@ void pop_node(Node<T>*& node)
 			node->prev = NULL;
 	}
 }
-//Функция удаления списка списков(списка с пропусками)
 template <typename T>
 void clear(SLNode<Node<T>* >*&first, SLNode<Node<T>* >*&last)
 {
@@ -109,13 +102,11 @@ void clear(SLNode<Node<T>* >*&first, SLNode<Node<T>* >*&last)
 	}
 }
 
-//Функция возвращающая случайное число в заданном диапазоне
 double random(double min, double max)
 {
 	return (double)(rand()) / RAND_MAX*(max - min) + min;
 }
 
-//Функция генерирования случайного уровня, не выше указанного максимального уровня
 int generatelvl(int maxlvl)
 {
 	int lvl = 1;
@@ -125,7 +116,6 @@ int generatelvl(int maxlvl)
 	//return 1;
 }
 
-//Функция поиска адреса элемента в списке. Результат - адрес элемента
 Node<int>* findadress(SLNode<Node<int>* >* slback, int key)
 {
 	if (slback)
@@ -177,7 +167,6 @@ Node<int>* findadress(SLNode<Node<int>* >* slback, int key)
 		return NULL;
 }
 
-//Функция проверки на существование элемента в списке. Результат - булевое значение
 bool contains(SLNode<Node<int>* >* slback, int key)
 {
 	if (slback)
@@ -191,7 +180,6 @@ bool contains(SLNode<Node<int>* >* slback, int key)
 		return false;
 }
 
-//Функция проверки на существование элемента в списке. Результат - вывод на экран 
 void containsElement(SLNode<Node<int>* >* slback, int key)
 {
 	if (slback)
@@ -206,9 +194,6 @@ void containsElement(SLNode<Node<int>* >* slback, int key)
 
 }
 
-//Функция вывода списка списков (списка с пропусками)
-//внутренний цикл проходит по узлам списка
-//внешний цикл - по уровням
 void skip_list_show(SLNode<Node<int>* >* sl)
 {
 	if (sl)
@@ -224,7 +209,6 @@ void skip_list_show(SLNode<Node<int>* >* sl)
 		cout << "Skip list is empty!" << endl;
 }
 
-//Функция поиска нужного адреса для вставки элемента
 Node<int>* findadresstoinsert(SLNode<Node<int>* >* slback, Node<int>** array, int maxlvl, int key)
 {
 	if (slback)
@@ -322,7 +306,6 @@ Node<int>* findadresstoinsert(SLNode<Node<int>* >* slback, Node<int>** array, in
 		return NULL;
 }
 
-//Функция, добавляющая узел на уровни выше
 void addup(SLNode<Node<int>*>*& first, SLNode<Node<int>*>*&last,Node<int>* down, int maxlvl, Node<int>** array)
 {
 	int currlvl = 1;
@@ -388,7 +371,6 @@ void addup(SLNode<Node<int>*>*& first, SLNode<Node<int>*>*&last,Node<int>* down,
 	}
 }
 
-//Функция вставки узла в список списков (список с пропусками)
 void insert(SLNode<Node<int>* >*& first, SLNode<Node<int>* >*& last, int maxlvl, int key)
 {
 	if (!first)
@@ -448,7 +430,7 @@ void insert(SLNode<Node<int>* >*& first, SLNode<Node<int>* >*& last, int maxlvl,
 		delete[] array;
 	}
 }
-//Удаление узла из списка списков(списка с пропусками)
+
 void remove(SLNode<Node<int>* >*& slfront, SLNode<Node<int>* >*& slback, int key)
 {
 	auto p = findadress(slback, key);
@@ -495,7 +477,7 @@ void remove(SLNode<Node<int>* >*& slfront, SLNode<Node<int>* >*& slback, int key
 				}
 	}
 }
-//Фукнция поиска адреса начального элемента из диапазона 
+
 Node<int>* findadresstoshow(SLNode<Node<int>* >* slback, int key)
 {
 	if (slback)
@@ -579,7 +561,7 @@ Node<int>* findadresstoshow(SLNode<Node<int>* >* slback, int key)
 	else
 		return NULL;
 }
-//функция вывода всех элементов в заданном диапазоне
+
 void showrange(SLNode<Node<int>* >* slback)
 {
 	if (slback)
@@ -609,7 +591,7 @@ void showrange(SLNode<Node<int>* >* slback)
 		cout << "Skip list is empty!" << endl;
 }
 
-//заполнение списка с пропусками случайно сгенерированными числами
+
 void randomfill(SLNode<Node<int>* >*& first, SLNode<Node<int>* >*& last, int maxlvl)
 {
 	for (int i = 0;i < 1000000;i++)
@@ -632,67 +614,25 @@ int main()
 	cout << "Time of 1 000 000 insertings in SKIP LIST = " << ((double)clock() - (double)t) * 1000. / CLOCKS_PER_SEC
 		<< " milliseconds" << endl;
 
-	t = clock();
-	insert(skip_list_front, skip_list_back, maxlvl, 500510);
-	cout << "Time of inserting in SKIP LIST = " << ((double)clock() - (double)t) * 1000 / CLOCKS_PER_SEC
-		<< " milliseconds" << endl;
-
-	t = clock();
-	findadress(skip_list_back, 500510);
-	cout << "Time of searching in SKIP LIST = " << ((double)clock() - (double)t) * 1000 / CLOCKS_PER_SEC << " milliseconds" << endl;
-
-	t = clock();
-	remove(skip_list_front, skip_list_back, 500510);
-	cout << "Time of deleting in SKIP LIST = " << ((double)clock() - (double)t) * 1000 / CLOCKS_PER_SEC
-		<< " milliseconds" << endl;
-
 	clear(skip_list_front, skip_list_back);
 	cout << endl;
 
-	//вставка 1000000 элементов в стандартный список
+	
 	list<int> mylist;
 	int b = clock();
 	for (int i = 0; i < 1000000; ++i)
 		mylist.push_front(random(-10000,1000000));
 	cout << "Time of 1 000 000 insertings in LIST: "<< ((double)(clock() - (double)b)) * 1000. / CLOCKS_PER_SEC << " milliseconds" <<endl;
 
-	b = clock();
-	mylist.push_back(500510);
-	cout << "Time of inserting in LIST: " << ((double)(clock() - (double)b)) * 1000. / CLOCKS_PER_SEC << " milliseconds" << endl;
-
-	b = clock();
-	auto j = find(mylist.begin(), mylist.end(), 500510);
-	cout << "Time of searching in LIST: " << ((double)(clock() - (double)b)) * 1000. / CLOCKS_PER_SEC << " milliseconds" << endl;
-
-	b = clock();
-	auto i = find(mylist.begin(), mylist.end(), 500510);
-	mylist.erase(i);
-	cout << "Time of deleteing in LIST: " << ((double)(clock() - (double)b)) * 1000. / CLOCKS_PER_SEC << " milliseconds" << endl;
-
 	cout << endl;
 
-	//вставка 1000000 элементов в стандартный сэт, основанный на реализации красно-черных деревьев
 	set<int> myset;
 	b = clock();
 	for (int i = 0;i < 1000000;i++)
 		myset.insert(random(-10000,1000000));
 	cout << "Time of 1 000 000 insertings in SET: "<< ((double)(clock() - (double)b)) * 1000. / CLOCKS_PER_SEC << " milliseconds" << endl;
 
-	b = clock();
-	myset.insert(500510);
-	cout << "Time of inserting in SET: " << ((double)(clock() - (double)b)) * 1000. / CLOCKS_PER_SEC << " milliseconds" << endl;
-
-	b = clock();
-	myset.find(500510);
-	cout << "Time of searching in SET: " << ((double)(clock() - (double)b)) * 1000. / CLOCKS_PER_SEC << " milliseconds" << endl;
-
-	b = clock();
-	myset.erase(500510);
-	cout << "Time of removing in SET: " << ((double)(clock() - (double)b)) * 1000. / CLOCKS_PER_SEC << " milliseconds" << endl;
-
 	cout << endl;
-
-	
 
 	///////checking up methods
 	/*cout << "SKIP LIST:" << endl;
